@@ -55,7 +55,7 @@ export class GeminiService {
    */
   async embedContent(text: string, model?: string) {
     const ai = this.getClient();
-    const modelToUse = model || "text-embedding-004";
+    const modelToUse = model || "gemini-embedding-2-preview";
 
     const response: any = await ai.models.embedContent({
       model: modelToUse,
