@@ -273,14 +273,14 @@ export default function EvidencePage({
       {/* 1. TOP HEADER */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-900 pb-5">
         <div>
-          <div className="flex items-center gap-2 text-indigo-400 font-mono text-[10px] font-bold uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-indigo-400 font-mono text-[11px] font-medium uppercase tracking-wider">
             <Sparkles size={11} className="animate-pulse" />
             <span>AI Forensic Investigator</span>
           </div>
-          <h2 className="text-xl font-display font-bold text-slate-100 mt-1">
+          <h2 className="text-[22px] font-display font-medium text-slate-100 mt-1 tracking-[-0.015em]">
             Why It Changed
           </h2>
-          <p className="text-[11px] text-slate-400 mt-0.5">
+          <p className="text-sm font-sans text-slate-400 mt-1 leading-relaxed">
             Understand the complete narrative of changes, regressions, decisions, and system chronology.
           </p>
         </div>
@@ -305,22 +305,22 @@ export default function EvidencePage({
             
             <div className="flex justify-between items-start border-b border-slate-800 pb-3.5">
               <div className="space-y-0.5">
-                <span className="text-[8px] font-mono font-bold text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 rounded px-1.5 py-0.5 uppercase tracking-wider">
+                <span className="text-[9px] font-mono font-medium text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 rounded px-1.5 py-0.5 uppercase tracking-wider">
                   Incident Narrative
                 </span>
-                <h3 className="text-sm font-sans font-bold text-slate-200 mt-2">
+                <h3 className="text-[15px] font-sans font-medium text-slate-100 mt-2 tracking-tight">
                   {activeStory.storyTitle}
                 </h3>
               </div>
 
               {/* Confidence Metric */}
               <div className="flex flex-col items-end">
-                <span className="text-[9px] font-mono text-slate-500">AI CONFIDENCE</span>
+                <span className="text-[10px] font-mono text-slate-500 font-medium">AI CONFIDENCE</span>
                 <div className="flex items-center gap-1">
                   <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/20 border border-emerald-500 flex items-center justify-center">
                     <CheckCircle size={8} className="text-emerald-400" />
                   </div>
-                  <span className="text-sm font-mono font-black text-emerald-400">
+                  <span className="text-sm font-mono font-semibold text-emerald-400">
                     {activeStory.confidenceScore}%
                   </span>
                 </div>
@@ -330,23 +330,23 @@ export default function EvidencePage({
             {/* AI Explanation block */}
             <div className="mt-4 space-y-4">
               <div className="bg-slate-950/60 border border-slate-850 rounded-lg p-4 space-y-3">
-                <div className="flex items-center gap-1.5 text-slate-300 font-semibold text-xs font-sans">
+                <div className="flex items-center gap-1.5 text-slate-200 font-medium text-sm font-sans">
                   <Sparkles size={13} className="text-indigo-400" />
                   <span>Why it changed: AI Reconstruction</span>
                 </div>
                 
-                <p className="text-[11px] font-mono leading-relaxed text-slate-300">
+                <p className="text-[13px] font-sans leading-relaxed text-slate-300">
                   {activeStory.explanationMarkdown}
                 </p>
 
-                <p className="text-[10px] text-slate-500 font-sans italic border-t border-slate-900 pt-2.5">
+                <p className="text-[11px] text-slate-500 font-sans italic border-t border-slate-900/60 pt-2.5">
                   "{activeStory.overview}"
                 </p>
               </div>
 
               {/* Verification Checklist */}
               <div className="space-y-2">
-                <span className="text-[9px] font-mono font-bold text-slate-500 uppercase tracking-wider block">
+                <span className="text-[11px] font-mono font-medium text-slate-500 uppercase tracking-wider block">
                   Verification Audit Factors:
                 </span>
                 <div className="grid grid-cols-1 gap-1.5 text-[10px] font-mono text-slate-400">
@@ -364,10 +364,10 @@ export default function EvidencePage({
           {/* B. SUPPORTING EVIDENCE LEDGER */}
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg space-y-4">
             <div className="border-b border-slate-800 pb-3">
-              <span className="text-[9px] font-mono font-bold text-slate-500 block uppercase tracking-wider">
+              <span className="text-[11px] font-mono font-medium text-slate-500 block uppercase tracking-wider">
                 Supporting Evidence & Linked Records
               </span>
-              <p className="text-[10px] text-slate-400 mt-0.5">
+              <p className="text-[12px] text-slate-400 mt-1 leading-relaxed">
                 Click on any verified record to fetch raw metadata digests, transcripts, and secure proof signatures.
               </p>
             </div>
@@ -442,15 +442,15 @@ export default function EvidencePage({
           >
             <div className="flex justify-between items-center border-b border-slate-800 pb-3.5 mb-4">
               <div className="space-y-0.5">
-                <span className="text-[8px] font-mono font-bold text-slate-500 block uppercase tracking-wider">
+                <span className="text-[11px] font-mono font-medium text-slate-500 block uppercase tracking-wider">
                   Chronological Path
                 </span>
-                <h4 className="text-xs font-sans font-bold text-slate-200">
+                <h4 className="text-sm font-sans font-medium text-slate-200 tracking-tight">
                   Incident Path Timeline ({scenarioEvents.length} events)
                 </h4>
               </div>
 
-              <span className="text-[9px] font-mono text-slate-500 uppercase">
+              <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
                 UTC CLOCK
               </span>
             </div>
@@ -502,23 +502,23 @@ export default function EvidencePage({
 
                     <div className="flex-1 min-w-0 space-y-1">
                       <div className="flex justify-between items-start gap-2">
-                        <span className="text-[9px] font-mono text-slate-500">
+                        <span className="text-[10px] font-mono font-medium text-slate-500">
                           {formattedDate}
                         </span>
-                        <span className="text-[9px] font-mono text-slate-600 font-bold uppercase select-all">
+                        <span className="text-[10px] font-mono text-slate-500 font-normal uppercase select-all">
                           {evt.refId}
                         </span>
                       </div>
                       
-                      <h5 className="text-[11px] font-sans font-bold leading-snug">
+                      <h5 className="text-[13px] font-sans font-normal leading-snug">
                         {evt.title}
                       </h5>
 
-                      <p className="text-[10px] font-mono leading-relaxed text-slate-500 line-clamp-2">
+                      <p className="text-[11px] font-mono leading-relaxed text-slate-500 line-clamp-2">
                         {evt.description}
                       </p>
 
-                      <div className="flex items-center gap-1.5 pt-1 text-[9px] font-mono text-slate-400">
+                      <div className="flex items-center gap-1.5 pt-1 text-[10.5px] font-sans font-semibold text-slate-400">
                         <User size={10} className="text-slate-600" />
                         <span>@{evt.author}</span>
                       </div>
@@ -531,7 +531,7 @@ export default function EvidencePage({
 
           {/* ACTIVE EVENT DRILL-DOWN PANEL */}
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-lg">
-            <span className="text-[10px] font-mono font-bold text-slate-500 block mb-2.5 uppercase tracking-wider border-b border-slate-850 pb-2">
+            <span className="text-[11px] font-mono font-medium text-slate-500 block mb-2.5 uppercase tracking-wider border-b border-slate-850 pb-2">
               Timeline Artifact Inspector
             </span>
 
@@ -540,11 +540,11 @@ export default function EvidencePage({
                 <div className="flex justify-between items-center bg-slate-950 p-2.5 rounded-lg border border-slate-850">
                   <div className="flex items-center gap-2">
                     {getEventIcon(activeEvent.type)}
-                    <span className="text-xs font-sans font-bold text-slate-200">
+                    <span className="text-xs font-sans font-semibold text-slate-200">
                       {activeEvent.title}
                     </span>
                   </div>
-                  <span className="text-[9px] font-mono text-indigo-400 font-bold bg-indigo-500/10 px-1.5 py-0.5 rounded">
+                  <span className="text-[10px] font-mono text-indigo-400 font-medium bg-indigo-500/10 px-1.5 py-0.5 rounded border border-indigo-500/10">
                     @{activeEvent.author}
                   </span>
                 </div>
@@ -599,16 +599,16 @@ export default function EvidencePage({
       <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg space-y-4 mt-6">
         <div className="flex justify-between items-center border-b border-slate-850 pb-3">
           <div>
-            <h3 className="text-xs font-sans font-bold text-slate-200 flex items-center gap-1.5">
+            <h3 className="text-sm font-sans font-medium text-slate-200 flex items-center gap-1.5">
               <Layers size={13} className="text-indigo-400" />
               <span>Verified Entity Graph Topology</span>
             </h3>
-            <p className="text-[10px] text-slate-500 font-mono">
+            <p className="text-[11px] text-slate-500 font-mono">
               Trace how actors, PRs, issues, commits, and services interconnect to build this incident.
             </p>
           </div>
           
-          <div className="text-[9px] font-mono text-indigo-400 bg-indigo-500/5 px-2 py-0.5 rounded border border-indigo-500/10">
+          <div className="text-[10px] font-mono text-indigo-400 bg-indigo-500/5 px-2 py-0.5 rounded border border-indigo-500/10 tracking-wider font-medium">
             TIME TOPOLOGY MAP
           </div>
         </div>
@@ -630,14 +630,14 @@ export default function EvidencePage({
           <div className="bg-slate-900 border border-slate-800 rounded-xl max-w-lg w-full p-6 shadow-2xl space-y-4 animate-fade-in text-left">
             <div className="flex justify-between items-start border-b border-slate-800 pb-3">
               <div>
-                <span className="text-[9px] font-mono text-indigo-400 uppercase tracking-widest block font-bold">
+                <span className="text-[11px] font-mono text-indigo-400 uppercase tracking-widest block font-medium">
                   {activeEvidenceModal.type} EVIDENCE FILE
                 </span>
-                <h3 className="text-sm font-sans font-bold text-slate-200 mt-1">
+                <h3 className="text-[15px] font-sans font-medium text-slate-100 mt-1 tracking-tight">
                   {activeEvidenceModal.label}
                 </h3>
               </div>
-              <span className="text-xs font-mono bg-slate-950 px-2.5 py-1 rounded border border-slate-850 text-slate-400 select-all font-bold">
+              <span className="text-xs font-mono bg-slate-950 px-2.5 py-1 rounded border border-slate-850 text-slate-400 select-all font-medium">
                 {activeEvidenceModal.ref}
               </span>
             </div>

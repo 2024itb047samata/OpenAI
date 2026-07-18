@@ -64,13 +64,13 @@ export default function DashboardPage({
       <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl bg-gradient-to-br from-slate-900 to-indigo-950/20 shadow-xl space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">
-            <span className="text-[10px] font-mono font-bold text-indigo-400 uppercase tracking-wider block">
+            <span className="text-[11px] font-mono font-medium text-indigo-400 uppercase tracking-wider block">
               Active Console
             </span>
-            <h2 className="text-xl font-display font-bold text-slate-100">
+            <h2 className="text-xl md:text-[22px] font-display font-medium text-slate-100 tracking-[-0.015em]">
               Welcome back, {githubUser?.name || githubUser?.login || "Engineer"}
             </h2>
-            <p className="text-[11px] text-slate-400 max-w-xl">
+            <p className="text-[13px] text-slate-400 max-w-xl font-sans">
               CodeStory has mapped your repository integrations. All systems are operational.
             </p>
           </div>
@@ -78,14 +78,14 @@ export default function DashboardPage({
           <div className="flex gap-2">
             <button
               onClick={onNavigateToAskAi}
-              className="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[10px] font-bold font-mono transition-all flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(99,102,241,0.2)]"
+              className="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[10.5px] font-semibold font-mono tracking-tight transition-all flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(99,102,241,0.2)]"
             >
               <Sparkles size={11} className="animate-pulse" />
               Ask AI
             </button>
             <button
               onClick={onNavigateToTimeline}
-              className="px-3.5 py-2 bg-slate-950 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white rounded-lg text-[10px] font-bold font-mono transition-all flex items-center gap-1.5 cursor-pointer"
+              className="px-3.5 py-2 bg-slate-950 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white rounded-lg text-[10.5px] font-semibold font-mono tracking-tight transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <Clock size={11} />
               Timeline
@@ -98,56 +98,56 @@ export default function DashboardPage({
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-slate-900 border border-slate-800/80 p-4 rounded-xl text-left space-y-2">
           <div className="flex justify-between items-center text-slate-500">
-            <span className="text-[10px] font-mono uppercase font-bold tracking-wider">Indexed Artifacts</span>
+            <span className="text-[11px] font-mono uppercase font-medium tracking-wider text-slate-400/80">Indexed Artifacts</span>
             <Layers size={14} className="text-indigo-400" />
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-100">418</span>
-            <span className="text-[9px] font-mono text-emerald-400 font-semibold">+14% last week</span>
+            <span className="text-2xl md:text-[30px] font-display font-semibold text-slate-100 tracking-tight">418</span>
+            <span className="text-[10px] font-mono text-emerald-400 font-medium">+14% last week</span>
           </div>
-          <p className="text-[9px] font-mono text-slate-500 leading-normal">
+          <p className="text-[12px] font-sans text-slate-400/90 leading-normal">
             Issues, PRs, Commits, & Reviews cached locally.
           </p>
         </div>
 
         <div className="bg-slate-900 border border-slate-800/80 p-4 rounded-xl text-left space-y-2">
           <div className="flex justify-between items-center text-slate-500">
-            <span className="text-[10px] font-mono uppercase font-bold tracking-wider">Grounding SLA</span>
+            <span className="text-[11px] font-mono uppercase font-medium tracking-wider text-slate-400/80">Grounding SLA</span>
             <Activity size={14} className="text-indigo-400 animate-pulse" />
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-100">99.98%</span>
-            <span className="text-[9px] font-mono text-indigo-400 font-semibold">Zero Hallucinations</span>
+            <span className="text-2xl md:text-[30px] font-display font-semibold text-slate-100 tracking-tight">99.98%</span>
+            <span className="text-[10px] font-mono text-indigo-400 font-medium">Zero Hallucinations</span>
           </div>
-          <p className="text-[9px] font-mono text-slate-500 leading-normal">
+          <p className="text-[12px] font-sans text-slate-400/90 leading-normal">
             RRF synthesis matches vector nodes perfectly.
           </p>
         </div>
 
         <div className="bg-slate-900 border border-slate-800/80 p-4 rounded-xl text-left space-y-2">
           <div className="flex justify-between items-center text-slate-500">
-            <span className="text-[10px] font-mono uppercase font-bold tracking-wider">AI Queries Made</span>
+            <span className="text-[11px] font-mono uppercase font-medium tracking-wider text-slate-400/80">AI Queries Made</span>
             <Cpu size={14} className="text-purple-400" />
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-100">284</span>
-            <span className="text-[9px] font-mono text-indigo-400 font-semibold">100% token usage</span>
+            <span className="text-2xl md:text-[30px] font-display font-semibold text-slate-100 tracking-tight">284</span>
+            <span className="text-[10px] font-mono text-indigo-400 font-medium">100% token usage</span>
           </div>
-          <p className="text-[9px] font-mono text-slate-500 leading-normal">
+          <p className="text-[12px] font-sans text-slate-400/90 leading-normal">
             Requests resolved by server-side Gemini RAG.
           </p>
         </div>
 
         <div className="bg-slate-900 border border-slate-800/80 p-4 rounded-xl text-left space-y-2">
           <div className="flex justify-between items-center text-slate-500">
-            <span className="text-[10px] font-mono uppercase font-bold tracking-wider">Saved Explanations</span>
+            <span className="text-[11px] font-mono uppercase font-medium tracking-wider text-slate-400/80">Saved Explanations</span>
             <FileLock2 size={14} className="text-emerald-400" />
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-100">12</span>
-            <span className="text-[9px] font-mono text-emerald-400 font-semibold">Saved changes</span>
+            <span className="text-2xl md:text-[30px] font-display font-semibold text-slate-100 tracking-tight">12</span>
+            <span className="text-[10px] font-mono text-emerald-400 font-medium">Saved changes</span>
           </div>
-          <p className="text-[9px] font-mono text-slate-500 leading-normal">
+          <p className="text-[12px] font-sans text-slate-400/90 leading-normal">
             Saved reasons behind changes.
           </p>
         </div>
@@ -160,14 +160,14 @@ export default function DashboardPage({
         <div className="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-xl p-5 text-left flex flex-col space-y-4 shadow-lg">
           <div className="flex justify-between items-center border-b border-slate-800/80 pb-3">
             <div>
-              <span className="text-[9px] font-mono font-bold text-slate-500 uppercase tracking-wider block">
+              <span className="text-[11px] font-mono font-medium text-slate-500 uppercase tracking-wider block">
                 Repository Diagnostics
               </span>
-              <h3 className="text-xs font-sans font-bold text-slate-200 mt-0.5">
+              <h3 className="text-[14px] font-sans font-medium text-slate-200 mt-0.5 tracking-tight">
                 Ingestion & Code Check-In Velocity
               </h3>
             </div>
-            <div className="flex gap-3 text-[9px] font-mono font-bold">
+            <div className="flex gap-3 text-[10px] font-mono font-medium">
               <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 bg-indigo-500 rounded-full" /> Commits</span>
               <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 bg-indigo-300 rounded-full" /> Issues/PRs</span>
             </div>
@@ -248,10 +248,10 @@ export default function DashboardPage({
         {/* Scenario Selection Log - lg:col-span-5 */}
         <div className="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-xl p-5 text-left flex flex-col space-y-4 shadow-lg">
           <div className="border-b border-slate-800/80 pb-3">
-            <span className="text-[9px] font-mono font-bold text-slate-500 uppercase tracking-wider block">
+            <span className="text-[11px] font-mono font-medium text-slate-500 uppercase tracking-wider block">
               Demo Scenarios
             </span>
-            <h3 className="text-xs font-sans font-bold text-slate-200 mt-0.5">
+            <h3 className="text-[14px] font-sans font-medium text-slate-200 mt-0.5 tracking-tight">
               Explore Scenarios ({scenarios.length})
             </h3>
           </div>
@@ -285,25 +285,25 @@ export default function DashboardPage({
                   <div className="flex justify-between items-start gap-2">
                     <div className="space-y-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className={`text-[8px] font-mono font-bold px-1.5 py-0.5 border rounded uppercase ${severityStyles[sc.severity]}`}>
+                        <span className={`text-[9px] font-mono font-medium px-1.5 py-0.5 border rounded uppercase ${severityStyles[sc.severity]}`}>
                           {sc.severity}
                         </span>
-                        <h4 className="text-[11px] font-sans font-bold text-slate-200 truncate">
+                        <h4 className="text-[13px] font-sans font-semibold text-slate-200 truncate">
                           {sc.name}
                         </h4>
                       </div>
                     </div>
                     
-                    <span className={`text-[8px] font-mono font-bold px-1.5 py-0.5 border rounded uppercase shrink-0 ${statusStyles[sc.status]}`}>
+                    <span className={`text-[9px] font-mono font-medium px-1.5 py-0.5 border rounded uppercase shrink-0 ${statusStyles[sc.status]}`}>
                       {sc.status}
                     </span>
                   </div>
 
-                  <p className="text-[10px] font-mono leading-normal text-slate-500 line-clamp-2">
+                  <p className="text-[12px] font-sans leading-relaxed text-slate-400 line-clamp-2">
                     {sc.description}
                   </p>
 
-                  <div className="flex justify-between items-center text-[9px] font-mono text-slate-600 border-t border-slate-900 pt-2">
+                  <div className="flex justify-between items-center text-[11px] font-mono text-slate-500 border-t border-slate-900/60 pt-2">
                     <span>Target: {sc.id}</span>
                     <button 
                       onClick={(e) => {
@@ -311,10 +311,10 @@ export default function DashboardPage({
                         onSelectScenario(sc.id);
                         onNavigateToTimeline();
                       }}
-                      className="text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-0.5"
+                      className="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-0.5"
                     >
                       View timeline
-                      <ArrowUpRight size={10} />
+                      <ArrowUpRight size={11} />
                     </button>
                   </div>
                 </div>
@@ -329,11 +329,11 @@ export default function DashboardPage({
         <div className="flex justify-between items-center border-b border-slate-800/80 pb-3">
           <div className="flex items-center gap-2">
             <Terminal size={14} className="text-indigo-400" />
-            <h3 className="text-xs font-sans font-bold text-slate-200">
+            <h3 className="text-[14px] font-sans font-medium text-slate-200 tracking-tight">
               Active Integration Node Status
             </h3>
           </div>
-          <span className="text-[9px] font-mono bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded">
+          <span className="text-[10px] font-mono bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded">
             SYS_HEALTH_CHECK: OK
           </span>
         </div>
@@ -344,8 +344,8 @@ export default function DashboardPage({
               <GitBranch size={16} />
             </div>
             <div>
-              <span className="text-[9px] text-slate-500 block">GITHUB CONNECTOR</span>
-              <span className="text-[11px] font-bold text-slate-300">
+              <span className="text-[11px] text-slate-500 font-medium block">GITHUB CONNECTOR</span>
+              <span className="text-[13px] font-semibold text-slate-300">
                 {isGitHubConnected ? `@${githubUser?.login || "Active"}` : "Unconnected"}
               </span>
             </div>
@@ -356,8 +356,8 @@ export default function DashboardPage({
               <Layers size={16} />
             </div>
             <div>
-              <span className="text-[9px] text-slate-500 block">CUSTOM REPOS SYNCED</span>
-              <span className="text-[11px] font-bold text-slate-300">
+              <span className="text-[11px] text-slate-500 font-medium block">CUSTOM REPOS SYNCED</span>
+              <span className="text-[13px] font-semibold text-slate-300">
                 {customReposCount} Repositories
               </span>
             </div>
@@ -368,8 +368,8 @@ export default function DashboardPage({
               <ShieldCheck size={16} />
             </div>
             <div>
-              <span className="text-[9px] text-slate-500 block">AI RAG STATUS</span>
-              <span className="text-[11px] font-bold text-slate-300">
+              <span className="text-[11px] text-slate-500 font-medium block">AI RAG STATUS</span>
+              <span className="text-[13px] font-semibold text-slate-300">
                 Active & Calibrated
               </span>
             </div>

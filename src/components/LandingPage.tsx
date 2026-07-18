@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import CybercoreBackground from "./CybercoreBackground";
-import ShaderBackground from "./ShaderBackground";
+import InteractiveNeuralVortex from "./ui/InteractiveNeuralVortex";
 import InteractiveHeroGraph from "./InteractiveHeroGraph";
 import {
   Clock,
@@ -23,13 +23,19 @@ import {
   AlertCircle,
   Activity,
   Workflow,
-  FileText
+  FileText,
+  ChevronDown,
+  LayoutDashboard,
+  Settings2,
+  LogOut
 } from "lucide-react";
+import { useAuth } from "../lib/auth";
 
 interface LandingPageProps {
   onLaunch: () => void;
   serverHealth: "checking" | "online" | "offline";
   apiKeyActive: boolean;
+  onNavigateToPage: (page: "landing" | "dashboard" | "repository" | "timeline" | "evidence" | "ask_ai" | "settings" | "login" | "signup" | "forgot") => void;
 }
 
 // ==========================================
@@ -846,8 +852,10 @@ function InteractiveTerminal() {
 // ==========================================
 // MAIN LANDING PAGE COMPONENT
 // ==========================================
-export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: LandingPageProps) {
+export default function LandingPage({ onLaunch, serverHealth, apiKeyActive, onNavigateToPage }: LandingPageProps) {
   const [showDemo, setShowDemo] = useState(false);
+  const { user, isAuthenticated, logout } = useAuth();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen bg-transparent text-slate-100 overflow-x-hidden flex flex-col font-sans selection:bg-indigo-500/30 selection:text-white" id="codestory-universe">
@@ -885,11 +893,11 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
 
       {/* 2. ATMOSPHERIC INTERSTELLAR BACKGROUNDS */}
       {/* 1. Fixed elegant WebGL Shader background (z-index: 0) */}
-      <ShaderBackground />
+      <InteractiveNeuralVortex />
 
-      {/* 2. Dark overlay (65% opacity) above shader (z-index: 1) to secure text readability */}
+      {/* 2. Dark overlay (35% opacity) above shader (z-index: 1) to secure text readability */}
       <div 
-        className="fixed inset-0 bg-[#050816]/65 pointer-events-none select-none" 
+        className="fixed inset-0 bg-[#050816]/35 pointer-events-none select-none" 
         style={{ zIndex: 1 }} 
       />
 
@@ -920,10 +928,10 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
             <Clock className="w-4.5 h-4.5 animate-pulse" />
           </div>
           <div className="text-left">
-            <span className="text-xs font-extrabold font-display tracking-tight text-white uppercase block">
+            <span className="text-[14px] font-semibold font-display tracking-tight text-white block">
               CodeStory
             </span>
-            <span className="text-[8px] font-mono text-indigo-400 uppercase tracking-widest block">
+            <span className="text-[8.5px] font-mono text-indigo-400 uppercase tracking-wider block">
               Every Commit Has a Story.
             </span>
           </div>
@@ -945,11 +953,80 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
           
           <button
             onClick={onLaunch}
-            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-sans font-bold transition-all duration-300 flex items-center gap-1.5 cursor-pointer shadow-[0_0_20px_rgba(99,102,241,0.25)] hover:shadow-[0_0_30px_rgba(99,102,241,0.4)]"
+            className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white rounded-lg text-xs font-sans font-bold transition-all duration-300 border border-slate-800 hover:border-slate-700 flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.2)]"
           >
             <span>Launch Engine</span>
             <ArrowRight size={12} className="animate-pulse" />
           </button>
+
+          {isAuthenticated && user ? (
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center gap-2 px-3 py-1.5 bg-indigo-600/10 hover:bg-indigo-600/20 border border-indigo-500/30 rounded-xl transition-all cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-slate-950"
+              >
+                <img
+                  src={user.avatarUrl || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(user.email)}`}
+                  alt={user.name}
+                  className="w-5 h-5 rounded-full border border-indigo-500/30"
+                />
+                <span className="text-xs font-sans font-medium text-indigo-200 hidden sm:inline-block">
+                  {user.name}
+                </span>
+                <ChevronDown size={12} className={`text-indigo-400 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`} />
+              </button>
+              
+              {isDropdownOpen && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setIsDropdownOpen(false)} />
+                  <div className="absolute right-0 mt-2 w-48 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl p-2 z-50 animate-fade-in space-y-1 text-left">
+                    <div className="px-3 py-2 border-b border-slate-900 mb-1">
+                      <p className="text-xs font-sans font-semibold text-slate-200 truncate">{user.name}</p>
+                      <p className="text-[9px] font-mono text-slate-500 truncate">{user.email}</p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setIsDropdownOpen(false);
+                        onLaunch();
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-lg text-xs font-sans text-slate-300 hover:text-white hover:bg-indigo-600/10 hover:border hover:border-indigo-500/20 transition-all flex items-center gap-2 cursor-pointer"
+                    >
+                      <LayoutDashboard size={13} className="text-indigo-400" />
+                      <span>Dashboard</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIsDropdownOpen(false);
+                        onNavigateToPage("settings");
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-lg text-xs font-sans text-slate-300 hover:text-white hover:bg-indigo-600/10 hover:border hover:border-indigo-500/20 transition-all flex items-center gap-2 cursor-pointer"
+                    >
+                      <Settings2 size={13} className="text-indigo-400" />
+                      <span>Settings</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIsDropdownOpen(false);
+                        logout();
+                        onNavigateToPage("landing");
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-lg text-xs font-sans text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all flex items-center gap-2 cursor-pointer"
+                    >
+                      <LogOut size={13} />
+                      <span>Logout</span>
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          ) : (
+            <button
+              onClick={() => onNavigateToPage("login")}
+              className="px-4.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-sans font-bold transition-all duration-300 transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-slate-950 cursor-pointer shadow-[0_0_15px_rgba(99,102,241,0.25)]"
+            >
+              Login
+            </button>
+          )}
         </div>
       </header>
 
@@ -964,9 +1041,9 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-400 text-[10.5px] font-mono font-bold backdrop-blur-md shadow-[0_0_20px_rgba(99,102,241,0.05)]"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-400 text-[10px] font-mono font-medium backdrop-blur-md shadow-[0_0_20px_rgba(99,102,241,0.05)] tracking-wide"
             >
-              <Sparkles size={12} className="animate-pulse" />
+              <Sparkles size={11} className="animate-pulse" />
               <span>THE COGNITIVE GIT HISTORY ANALYZER</span>
             </motion.div>
 
@@ -974,7 +1051,7 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, type: "spring" }}
-              className="text-4xl sm:text-5xl md:text-6.5xl font-display font-black tracking-tight text-slate-100 leading-[1.08] text-glow bg-gradient-to-br from-white via-white to-slate-400 text-transparent bg-clip-text text-center lg:text-left"
+              className="text-[38px] md:text-[48px] lg:text-[64px] font-display font-semibold tracking-[-0.03em] text-slate-100 leading-[1.1] text-glow bg-gradient-to-br from-white via-white to-slate-400 text-transparent bg-clip-text text-center lg:text-left"
             >
               CodeStory
             </motion.h1>
@@ -983,7 +1060,7 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-sm sm:text-base font-bold tracking-widest text-indigo-400 font-mono uppercase block text-center lg:text-left"
+              className="text-xs sm:text-sm font-semibold tracking-[0.18em] text-indigo-400/90 font-mono uppercase block text-center lg:text-left"
             >
               "Every Commit Has a Story."
             </motion.div>
@@ -992,7 +1069,7 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-sm sm:text-base text-slate-400 leading-relaxed font-sans max-w-2xl text-center lg:text-left"
+              className="text-base sm:text-lg lg:text-[20px] text-slate-400 leading-relaxed font-sans max-w-2xl text-center lg:text-left tracking-[-0.01em]"
             >
               Understand the complete story behind every engineering decision using AI-powered timeline reconstruction, repository intelligence, and contextual search.
             </motion.p>
@@ -1006,7 +1083,7 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
             >
               <button
                 onClick={onLaunch}
-                className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold font-sans tracking-wide transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(99,102,241,0.35)] hover:scale-[1.02]"
+                className="px-7 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-semibold font-sans tracking-[-0.01em] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(99,102,241,0.3)] hover:scale-[1.01]"
               >
                 <span>✨ Analyze Repository</span>
                 <ArrowRight size={14} />
@@ -1014,7 +1091,7 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
               
               <button
                 onClick={() => setShowDemo(true)}
-                className="px-8 py-4 bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl text-xs font-bold font-sans border border-slate-800 hover:border-slate-700 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer backdrop-blur-sm"
+                className="px-7 py-3.5 bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl text-xs font-semibold font-sans border border-slate-800 hover:border-slate-700 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer backdrop-blur-sm tracking-[-0.01em]"
               >
                 <Play size={11} className="text-indigo-400 fill-indigo-400" />
                 <span>Watch Demo</span>
@@ -1064,16 +1141,16 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="space-y-6"
+          className="space-y-8"
         >
-          <div className="text-center space-y-2 max-w-xl mx-auto">
-            <span className="text-[10px] font-mono font-bold text-indigo-500 uppercase tracking-widest block">
+          <div className="text-center space-y-3 max-w-xl mx-auto">
+            <span className="text-[11px] font-mono font-medium text-indigo-400/80 uppercase tracking-widest block">
               EXPERIENCE THE INTELLIGENCE
             </span>
-            <h3 className="text-xl md:text-2xl font-display font-extrabold text-white tracking-tight">
+            <h3 className="text-[26px] md:text-[34px] font-display font-semibold text-white tracking-[-0.02em] leading-tight">
               Interactive Reasoning Sandbox
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-sm md:text-[16px] text-slate-400 leading-relaxed">
               Run simulated forensic traces below to see how CodeStory parses metadata relations to resolve mystery regressions in seconds.
             </p>
           </div>
@@ -1096,14 +1173,14 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
 
         {/* SECTION D: BENTO FEATURES GRID */}
         <section className="space-y-12 border-t border-slate-900/60 pt-20">
-          <div className="text-center space-y-2">
-            <span className="text-[10px] font-mono font-bold text-indigo-500 uppercase tracking-widest block">
+          <div className="text-center space-y-3">
+            <span className="text-[11px] font-mono font-medium text-indigo-400/80 uppercase tracking-widest block">
               ARCHITECTURE STACK
             </span>
-            <h2 className="text-2xl md:text-3.5xl font-display font-extrabold text-white tracking-tight">
+            <h2 className="text-[26px] md:text-[34px] font-display font-semibold text-white tracking-[-0.02em] leading-tight">
               Premium Cognitive Architecture
             </h2>
-            <p className="text-xs text-slate-400 max-w-lg mx-auto">
+            <p className="text-sm md:text-[16px] text-slate-400 max-w-lg mx-auto leading-relaxed">
               Engineered with advanced database mapping algorithms and high-contrast glass UI inspired by Linear, Apple Vision, and Vercel.
             </p>
           </div>
@@ -1114,11 +1191,11 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
                 <GitBranch size={20} className="animate-pulse" />
               </div>
               <div className="space-y-2">
-                <h4 className="text-xs font-mono font-bold text-slate-500 uppercase">01 // CHRONOLOGY</h4>
-                <h3 className="text-sm font-sans font-bold text-slate-100">
+                <h4 className="text-[11px] font-mono font-medium text-slate-500 uppercase tracking-wider">01 // CHRONOLOGY</h4>
+                <h3 className="text-[22px] font-sans font-medium text-slate-100 tracking-[-0.015em] leading-snug">
                   Chronological Telemetry Timelines
                 </h3>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
+                <p className="text-[14px] text-slate-400 leading-relaxed">
                   Track dynamic commit histories, pull requests, issues, and CodeQL checks compiled chronologically into a single, comprehensive workspace pane.
                 </p>
               </div>
@@ -1129,11 +1206,11 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
                 <Network size={20} />
               </div>
               <div className="space-y-2">
-                <h4 className="text-xs font-mono font-bold text-slate-500 uppercase">02 // EMBEDDINGS</h4>
-                <h3 className="text-sm font-sans font-bold text-slate-100">
+                <h4 className="text-[11px] font-mono font-medium text-slate-500 uppercase tracking-wider">02 // EMBEDDINGS</h4>
+                <h3 className="text-[22px] font-sans font-medium text-slate-100 tracking-[-0.015em] leading-snug">
                   Inter-Record Relationship Mapping
                 </h3>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
+                <p className="text-[14px] text-slate-400 leading-relaxed">
                   Our advanced compiler matches commits to referenced issues (e.g. "Closes #101"), author records, files, and dynamic container logs into a searchable map.
                 </p>
               </div>
@@ -1144,11 +1221,11 @@ export default function LandingPage({ onLaunch, serverHealth, apiKeyActive }: La
                 <Sparkles size={20} />
               </div>
               <div className="space-y-2">
-                <h4 className="text-xs font-mono font-bold text-slate-500 uppercase">03 // AI HYBRID SEARCH</h4>
-                <h3 className="text-sm font-sans font-bold text-slate-100">
+                <h4 className="text-[11px] font-mono font-medium text-slate-500 uppercase tracking-wider">03 // AI HYBRID SEARCH</h4>
+                <h3 className="text-[22px] font-sans font-medium text-slate-100 tracking-[-0.015em] leading-snug">
                   Gemini-Powered Outage Reports
                 </h3>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
+                <p className="text-[14px] text-slate-400 leading-relaxed">
                   Slices text semantic vectors and BM25 keywords via RRF. Formulate clear explanations of why code blocks were deleted or modified, preventing regressions.
                 </p>
               </div>

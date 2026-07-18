@@ -120,7 +120,7 @@ export default function InteractiveTimeline({
       <div className="lg:col-span-12 bg-slate-900 border border-slate-800 rounded-xl p-3 shadow-md flex flex-wrap items-center justify-between gap-3 text-xs">
         <div className="flex items-center gap-2">
           <Filter size={14} className="text-indigo-400" />
-          <span className="font-mono font-bold text-slate-300">Timeline Scope Filters</span>
+          <span className="font-mono font-semibold tracking-tight text-slate-300">Timeline Scope Filters</span>
         </div>
 
         <div className="flex flex-wrap gap-1 bg-slate-950 p-1 rounded-lg border border-slate-850">
@@ -134,14 +134,14 @@ export default function InteractiveTimeline({
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id as any)}
-              className={`px-3 py-1.5 rounded-md font-mono text-[10px] font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-md font-mono text-[10px] font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
                 activeCategory === cat.id
-                  ? "bg-indigo-600 text-white font-extrabold shadow-sm"
-                  : "text-slate-500 hover:text-slate-300 hover:bg-slate-900"
+                  ? "bg-indigo-600 text-white font-semibold shadow-sm"
+                  : "text-slate-400 hover:text-slate-200 hover:bg-slate-900"
               }`}
             >
               <span>{cat.label}</span>
-              <span className={`text-[8px] px-1 py-0.1 rounded ${activeCategory === cat.id ? "bg-indigo-700 text-indigo-100" : "bg-slate-900 text-slate-600"}`}>
+              <span className={`text-[8.5px] px-1 py-0.1 rounded ${activeCategory === cat.id ? "bg-indigo-700 text-indigo-100" : "bg-slate-900 text-slate-500"}`}>
                 {cat.count}
               </span>
             </button>
@@ -213,31 +213,31 @@ export default function InteractiveTimeline({
                   {/* Event summary details */}
                   <div className="flex-1 min-w-0 space-y-1">
                     <div className="flex justify-between items-start gap-2">
-                      <span className="text-[10px] font-mono text-slate-500">
+                      <span className="text-[10px] font-mono font-medium text-slate-500">
                         {eventDate} UTC
                       </span>
-                      <span className="text-[10px] font-mono text-slate-600 select-all font-semibold uppercase">
+                      <span className="text-[10px] font-mono text-slate-500 select-all font-normal uppercase">
                         {evt.refId}
                       </span>
                     </div>
 
-                    <h4 className="text-[11px] font-sans font-bold leading-snug text-slate-200">
+                    <h4 className="text-[13px] font-sans font-normal leading-snug text-slate-200">
                       {evt.title}
                     </h4>
 
-                    <p className="text-[10px] font-mono leading-relaxed text-slate-500 line-clamp-2">
+                    <p className="text-[11px] font-mono leading-relaxed text-slate-500 line-clamp-2">
                       {evt.description}
                     </p>
 
                     {/* Entities tags */}
                     <div className="flex flex-wrap gap-1 pt-1.5">
-                      <span className="text-[9px] font-mono bg-slate-950 px-1.5 py-0.5 border border-slate-900 text-slate-400 rounded">
+                      <span className="text-[10.5px] font-sans font-semibold bg-slate-950 px-1.5 py-0.5 border border-slate-900 text-slate-400 rounded">
                         @{evt.author}
                       </span>
                       {evt.entities.slice(0, 2).map((ent) => (
                         <span
                           key={ent}
-                          className="text-[9px] font-mono bg-indigo-500/5 px-1.5 py-0.5 border border-indigo-500/10 text-indigo-400 rounded"
+                          className="text-[10px] font-mono bg-indigo-500/5 px-1.5 py-0.5 border border-indigo-500/10 text-indigo-400 rounded"
                         >
                           {ent}
                         </span>

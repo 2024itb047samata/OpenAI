@@ -250,10 +250,10 @@ export default function ConnectorIntegrations({
       {/* 1. LEFT COLUMN: Integrations list */}
       <div className="lg:col-span-4 bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-lg flex flex-col gap-3">
         <div>
-          <span className="text-[10px] font-mono font-bold text-indigo-400 block uppercase tracking-wider">
+          <span className="text-[11px] font-mono font-medium text-indigo-400 block uppercase tracking-wider">
             Connected Sources
           </span>
-          <p className="text-[10px] text-slate-500 mt-0.5">
+          <p className="text-[10px] text-slate-500 mt-1 leading-normal">
             Synchronize workspace repositories, tickets, documents, and messages.
           </p>
         </div>
@@ -273,7 +273,7 @@ export default function ConnectorIntegrations({
                 <Code size={13} />
               </div>
               <div className="text-left">
-                <span className="text-xs font-sans font-bold block text-slate-200">GitHub Ingestion</span>
+                <span className="text-xs font-sans font-medium block text-slate-200">GitHub Ingestion</span>
                 <span className="text-[8px] font-mono text-slate-500 uppercase">Commits, PRs, Code</span>
               </div>
             </div>
@@ -311,7 +311,7 @@ export default function ConnectorIntegrations({
                       <Link2 size={13} />
                     </div>
                     <div className="text-left">
-                      <span className="text-xs font-sans font-bold block text-slate-200">{conn.name}</span>
+                      <span className="text-xs font-sans font-medium block text-slate-200">{conn.name}</span>
                       <span className="text-[8px] font-mono text-slate-500 uppercase">{conn.type} CONNECTOR</span>
                     </div>
                   </div>
@@ -336,7 +336,7 @@ export default function ConnectorIntegrations({
         <div className="bg-slate-950 p-3 rounded-lg border border-slate-800/80 text-[10px] space-y-1 text-left font-mono text-slate-400">
           <div className="flex items-center gap-1 text-slate-300">
             <Shield size={11} className="text-indigo-400" />
-            <span className="font-bold">DATA ISOLATION PROTOCOL</span>
+            <span className="font-semibold">DATA ISOLATION PROTOCOL</span>
           </div>
           <p className="text-[9px] text-slate-500 leading-normal">
             No source code contents are permanently stored on database discs. Timelines are compiled on-the-fly using secure cryptographic checksum arrays.
@@ -354,10 +354,10 @@ export default function ConnectorIntegrations({
             {/* Header properties */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
               <div>
-                <span className="text-[9px] font-mono text-indigo-400 uppercase tracking-wider block font-bold">
+                <span className="text-[11px] font-mono text-indigo-400 uppercase tracking-wider block font-medium">
                   Ingestion Control Center
                 </span>
-                <h3 className="text-sm font-sans font-bold text-slate-200 mt-0.5">
+                <h3 className="text-sm font-sans font-medium text-slate-200 mt-0.5">
                   GitHub Metadata Sync
                 </h3>
               </div>
@@ -391,7 +391,7 @@ export default function ConnectorIntegrations({
               <div className="space-y-4">
                 {/* 4. PREMIUM GITHUB TRUST DISCLAIMER CARD */}
                 <div className="bg-slate-950 border border-indigo-500/15 rounded-xl p-5 space-y-4 shadow-md bg-gradient-to-br from-slate-950 to-indigo-950/10">
-                  <div className="flex items-center gap-2 text-indigo-400 text-sm font-bold font-sans">
+                  <div className="flex items-center gap-2 text-indigo-400 text-sm font-medium font-sans">
                     <ShieldCheck size={18} className="text-indigo-400 animate-pulse" />
                     <span>Your repository stays private.</span>
                   </div>
@@ -461,7 +461,7 @@ export default function ConnectorIntegrations({
                 {/* Add Repository block */}
                 <div className="md:col-span-5 space-y-3.5">
                   <div className="space-y-1">
-                    <h4 className="text-[11px] font-mono font-bold text-slate-300 uppercase">
+                    <h4 className="text-[11px] font-mono font-medium text-slate-300 uppercase">
                       Register Repository
                     </h4>
                     <p className="text-[9.5px] text-slate-500 leading-normal">
@@ -523,7 +523,7 @@ export default function ConnectorIntegrations({
                 {/* List of Registered Repositories */}
                 <div className="md:col-span-7 flex flex-col space-y-3">
                   <div className="space-y-1">
-                    <h4 className="text-[11px] font-mono font-bold text-slate-300 uppercase">
+                    <h4 className="text-[11px] font-mono font-medium text-slate-300 uppercase">
                       Registered repositories
                     </h4>
                     <p className="text-[9.5px] text-slate-500 leading-normal">
@@ -553,11 +553,11 @@ export default function ConnectorIntegrations({
                             <div className="flex justify-between items-start">
                               <div className="cursor-pointer" onClick={() => onSelectRepo(rp.id)}>
                                 <div className="flex items-center gap-1.5">
-                                  <span className="text-[11.5px] font-sans font-bold text-slate-200">
+                                  <span className="text-[11.5px] font-sans font-medium text-slate-200">
                                     {rp.id}
                                   </span>
                                   {isActive && (
-                                    <span className="text-[8px] font-mono bg-indigo-500/15 text-indigo-400 px-1.5 py-0.2 rounded uppercase font-bold border border-indigo-500/10">
+                                    <span className="text-[8px] font-mono bg-indigo-500/15 text-indigo-400 px-1.5 py-0.2 rounded uppercase font-medium border border-indigo-500/10">
                                       ACTIVE
                                     </span>
                                   )}
@@ -620,10 +620,10 @@ export default function ConnectorIntegrations({
           /* JIRA, SLACK, NOTION INTERFACE WITH ChatGPT-style OAuth login continue-style buttons */
           <div className="space-y-5 flex-1 flex flex-col text-left">
             <div className="border-b border-slate-800 pb-3">
-              <span className="text-[9px] font-mono text-indigo-400 uppercase tracking-widest block font-bold">
+              <span className="text-[11px] font-mono text-indigo-400 uppercase tracking-widest block font-medium">
                 Secondary Source Connector
               </span>
-              <h3 className="text-sm font-sans font-bold text-slate-200 mt-0.5">
+              <h3 className="text-sm font-sans font-medium text-slate-200 mt-0.5">
                 {activeConn.name} API Sync Tunnel
               </h3>
             </div>
@@ -644,7 +644,7 @@ export default function ConnectorIntegrations({
                   </div>
                   
                   <div className="space-y-1">
-                    <h5 className="text-sm font-sans font-extrabold text-slate-200">
+                    <h5 className="text-sm font-sans font-medium text-slate-200">
                       Enrypted Integration Channel Active
                     </h5>
                     <p className="text-[10px] font-mono text-emerald-400">
@@ -678,7 +678,7 @@ export default function ConnectorIntegrations({
                   </div>
 
                   <div className="space-y-1">
-                    <h5 className="text-xs font-sans font-bold text-slate-300">
+                    <h5 className="text-xs font-sans font-medium text-slate-300">
                       OAuth 2.0 Integration Safeguard
                     </h5>
                     <p className="text-[9.5px] font-mono text-slate-500 max-w-[280px]">
@@ -712,7 +712,7 @@ export default function ConnectorIntegrations({
                 <div className="p-1.5 bg-indigo-500/15 text-indigo-400 rounded-md">
                   <Lock size={14} className="animate-pulse" />
                 </div>
-                <span className="text-[11px] font-mono font-bold text-indigo-400">Encrypted OAuth Proxy Gateway</span>
+                <span className="text-[11px] font-mono font-medium text-indigo-400">Encrypted OAuth Proxy Gateway</span>
               </div>
               <button
                 onClick={() => setActiveOAuthPopup(null)}
@@ -728,7 +728,7 @@ export default function ConnectorIntegrations({
               {activeOAuthPopup.step === "disclaimer" && (
                 <div className="space-y-4 animate-fade-in">
                   <div className="space-y-1">
-                    <h4 className="text-xs font-sans font-extrabold text-slate-200">
+                    <h4 className="text-xs font-sans font-medium text-slate-200">
                       {activeOAuthPopup.title}
                     </h4>
                     <p className="text-[10px] font-mono text-slate-500 leading-normal">
@@ -737,7 +737,7 @@ export default function ConnectorIntegrations({
                   </div>
 
                   <div className="space-y-2 border-t border-b border-slate-800/80 py-3">
-                    <span className="text-[9.5px] font-mono font-bold text-slate-400 uppercase tracking-wide block">
+                    <span className="text-[10px] font-mono font-medium text-slate-400 uppercase tracking-wide block">
                       Requested Scopes:
                     </span>
                     <div className="space-y-1.5">
@@ -772,7 +772,7 @@ export default function ConnectorIntegrations({
                 <div className="flex flex-col items-center justify-center py-10 space-y-4 animate-fade-in text-center">
                   <RefreshCw size={28} className="text-indigo-400 animate-spin" />
                   <div className="space-y-1">
-                    <span className="text-xs font-sans font-bold text-slate-200">Confirming Token Handshake...</span>
+                    <span className="text-xs font-sans font-medium text-slate-200">Confirming Token Handshake...</span>
                     <p className="text-[9.5px] font-mono text-slate-500 max-w-[250px]">
                       Authenticating security proxy token arrays with integrated API endpoint gateway
                     </p>
@@ -787,7 +787,7 @@ export default function ConnectorIntegrations({
                   </div>
 
                   <div className="space-y-1">
-                    <h5 className="text-sm font-sans font-extrabold text-slate-200">
+                    <h5 className="text-sm font-sans font-medium text-slate-200">
                       Connection Handshake Successful!
                     </h5>
                     <p className="text-[10px] font-mono text-slate-500">

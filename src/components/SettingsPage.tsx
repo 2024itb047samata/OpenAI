@@ -54,13 +54,13 @@ export default function SettingsPage({
     <div className="space-y-6 animate-fade-in text-left" id="saas-settings-page">
       {/* Page Header */}
       <div className="border-b border-slate-900 pb-4">
-        <span className="text-[10px] font-mono font-bold text-indigo-400 uppercase tracking-wider block">
+        <span className="text-[11px] font-mono font-medium text-indigo-400 uppercase tracking-wider block">
           Platform Configurations
         </span>
-        <h2 className="text-lg font-display font-bold text-slate-100 mt-0.5">
+        <h2 className="text-[18px] font-display font-medium text-slate-100 mt-1 tracking-tight">
           App & API Tuner Settings
         </h2>
-        <p className="text-[11px] text-slate-400">
+        <p className="text-sm font-sans text-slate-400 mt-1">
           Configure API credentials, fine-tune AI settings, and manage your team.
         </p>
       </div>
@@ -74,14 +74,14 @@ export default function SettingsPage({
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-850 pb-3">
               <KeyRound size={15} className="text-indigo-400" />
-              <h3 className="text-xs font-sans font-bold text-slate-200">
+              <h3 className="text-xs font-sans font-medium text-slate-200">
                 Credentials & API Tokens
               </h3>
             </div>
 
             <form onSubmit={handleSaveApiKey} className="space-y-3.5">
               <div className="space-y-1.5">
-                <label className="text-[10px] font-mono font-bold text-slate-400 uppercase block">
+                <label className="text-[10px] font-mono font-medium text-slate-400 uppercase block">
                   Gemini API Secret Key
                 </label>
                 <div className="relative flex items-center">
@@ -115,7 +115,7 @@ export default function SettingsPage({
 
             {/* GitHub Connection */}
             <div className="border-t border-slate-850/60 pt-4 mt-2 space-y-3">
-              <span className="text-[10px] font-mono font-bold text-slate-400 uppercase block">
+              <span className="text-[10px] font-mono font-medium text-slate-400 uppercase block">
                 GitHub Connection
               </span>
 
@@ -130,7 +130,7 @@ export default function SettingsPage({
                       />
                     )}
                     <div>
-                      <span className="text-xs font-sans font-bold text-slate-200 block">
+                      <span className="text-xs font-sans font-medium text-slate-200 block">
                         @{githubUser?.login || "Active Session"}
                       </span>
                       <span className="text-[9px] font-mono text-slate-500">
@@ -141,7 +141,7 @@ export default function SettingsPage({
 
                   <button
                     onClick={onDisconnectGitHub}
-                    className="px-2.5 py-1.5 border border-red-500/20 hover:border-red-500/40 text-red-400 hover:bg-red-500/5 rounded text-[10px] font-mono font-bold transition-colors cursor-pointer"
+                    className="px-2.5 py-1.5 border border-red-500/20 hover:border-red-500/40 text-red-400 hover:bg-red-500/5 rounded text-[10px] font-mono font-semibold transition-colors cursor-pointer"
                   >
                     Disconnect
                   </button>
@@ -149,14 +149,14 @@ export default function SettingsPage({
               ) : (
                 <div className="p-3 bg-slate-950/40 border border-slate-850 rounded-lg flex flex-col sm:flex-row justify-between sm:items-center gap-3">
                   <div>
-                    <span className="text-[11px] font-sans font-bold text-slate-300 block">
+                    <span className="text-[11px] font-sans font-medium text-slate-300 block">
                       Connect GitHub credentials
                     </span>
                     <span className="text-[9px] font-mono text-slate-500">
                       Sync pull requests, issue workflows, and code commits
                     </span>
                   </div>
-                  <span className="text-[9px] font-mono font-bold bg-slate-900 text-slate-600 border border-slate-800 px-2 py-1 rounded">
+                  <span className="text-[9px] font-mono font-medium bg-slate-900 text-slate-600 border border-slate-800 px-2 py-1 rounded">
                     UNCONNECTED
                   </span>
                 </div>
@@ -168,14 +168,14 @@ export default function SettingsPage({
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-850 pb-3">
               <Sliders size={15} className="text-indigo-400" />
-              <h3 className="text-xs font-sans font-bold text-slate-200">
+              <h3 className="text-xs font-sans font-medium text-slate-200">
                 AI Search Settings
               </h3>
             </div>
 
             <div className="space-y-4 text-xs">
               <div className="space-y-1.5">
-                <div className="flex justify-between font-mono font-bold text-[10px] text-slate-400">
+                <div className="flex justify-between font-mono font-medium text-[10px] text-slate-400">
                   <span>SEARCH THRESHOLD</span>
                   <span className="text-indigo-400">{confidence}%</span>
                 </div>
@@ -193,7 +193,7 @@ export default function SettingsPage({
               </div>
 
               <div className="space-y-1.5">
-                <div className="flex justify-between font-mono font-bold text-[10px] text-slate-400">
+                <div className="flex justify-between font-mono font-medium text-[10px] text-slate-400">
                   <span>SEARCH RANK FUSION CONSTANT</span>
                   <span className="text-indigo-400">k = {rrfConstant}</span>
                 </div>
@@ -212,7 +212,7 @@ export default function SettingsPage({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div className="space-y-1.5 text-left">
-                  <label className="text-[10px] font-mono font-bold text-slate-400 block">
+                  <label className="text-[10px] font-mono font-medium text-slate-400 block">
                     AI MODEL
                   </label>
                   <select
@@ -226,7 +226,7 @@ export default function SettingsPage({
                 </div>
 
                 <div className="space-y-1.5 text-left">
-                  <label className="text-[10px] font-mono font-bold text-slate-400 block">
+                  <label className="text-[10px] font-mono font-medium text-slate-400 block">
                     CACHE POLICY
                   </label>
                   <select
@@ -251,7 +251,7 @@ export default function SettingsPage({
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-850 pb-3">
               <Users size={15} className="text-indigo-400" />
-              <h3 className="text-xs font-sans font-bold text-slate-200">
+              <h3 className="text-xs font-sans font-medium text-slate-200">
                 Team Members ({team.length})
               </h3>
             </div>
@@ -261,8 +261,8 @@ export default function SettingsPage({
               {team.map((mbr, index) => (
                 <div key={index} className="p-3 bg-slate-950/40 border border-slate-850 rounded-lg text-left space-y-1">
                   <div className="flex justify-between items-start">
-                    <span className="text-xs font-sans font-bold text-slate-200">{mbr.name}</span>
-                    <span className="text-[8px] font-mono bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-1.5 py-0.5 rounded uppercase font-bold">
+                    <span className="text-xs font-sans font-medium text-slate-200">{mbr.name}</span>
+                    <span className="text-[8px] font-mono bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-1.5 py-0.5 rounded uppercase font-medium">
                       {mbr.role.split(" ")[0]}
                     </span>
                   </div>
@@ -274,7 +274,7 @@ export default function SettingsPage({
 
             {/* Invite form */}
             <form onSubmit={handleAddMember} className="border-t border-slate-850/60 pt-4 mt-2 space-y-3">
-              <span className="text-[10px] font-mono font-bold text-slate-400 uppercase block">
+              <span className="text-[10px] font-mono font-medium text-slate-400 uppercase block">
                 Invite Team Member
               </span>
 

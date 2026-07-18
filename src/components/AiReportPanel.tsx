@@ -95,17 +95,17 @@ export default function AiReportPanel({
             <Sparkles size={15} className="animate-pulse" />
           </div>
           <div>
-            <h3 className="text-sm font-sans font-extrabold text-slate-100">
+            <h3 className="text-base font-sans font-medium text-slate-100 mt-1 tracking-tight">
               Structured Forensic Report
             </h3>
-            <p className="text-[10px] font-mono text-slate-500">
+            <p className="text-[11px] font-mono text-slate-400 font-medium">
               Active Scope: {currentScenario.name} • Model: {apiKeyActive ? "gemini-3.5-flash" : "Dynamic Forensic Synthesizer"}
             </p>
           </div>
         </div>
 
         {/* 2. CONFIDENCE METER */}
-        <div className="flex items-center gap-1.5 bg-emerald-500/5 px-2.5 py-1 rounded border border-emerald-500/15 text-[10px] font-mono text-emerald-400 font-bold">
+        <div className="flex items-center gap-1.5 bg-emerald-500/5 px-2.5 py-1 rounded border border-emerald-500/15 text-[10px] font-mono text-emerald-400 font-medium">
           <CheckCircle2 size={12} className="text-emerald-400" />
           <span>AI CONFIDENCE: 98%</span>
         </div>
@@ -113,7 +113,7 @@ export default function AiReportPanel({
 
       {/* 7. PREMIUM AI UX ACTION BAR */}
       <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-950/60 p-2.5 rounded-lg border border-slate-850">
-        <span className="text-[9px] font-mono text-slate-500 font-bold uppercase tracking-wide">
+        <span className="text-[10px] font-mono text-slate-500 font-medium uppercase tracking-wide">
           ANALYSIS TELEMETRY:
         </span>
 
@@ -174,7 +174,7 @@ export default function AiReportPanel({
 
       {/* 1. CORE AI ANSWER EXPLANATION PANEL */}
       <div className="space-y-2">
-        <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">
+        <span className="text-[11px] font-mono font-medium text-slate-500 uppercase tracking-wider block">
           Report Synopsis
         </span>
         <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-850 text-[11px] font-mono leading-relaxed text-slate-300 whitespace-pre-wrap leading-normal select-text">
@@ -184,7 +184,7 @@ export default function AiReportPanel({
 
       {/* 3. EVIDENCE EVENTS & MILESTONES */}
       <div className="space-y-2">
-        <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">
+        <span className="text-[11px] font-mono font-medium text-slate-500 uppercase tracking-wider block">
           Chain of Custody Timeline Evidence
         </span>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
@@ -195,18 +195,18 @@ export default function AiReportPanel({
               className="bg-slate-950/40 hover:bg-slate-950/90 border border-slate-850 hover:border-indigo-500/30 p-2.5 rounded-lg text-left transition-all flex flex-col justify-between h-20 cursor-pointer"
             >
               <div className="flex justify-between items-center w-full">
-                <span className="text-[8px] font-mono font-bold text-indigo-400 uppercase tracking-wider">
+                <span className="text-[9px] font-mono font-medium text-indigo-400 uppercase tracking-wider">
                   {evt.type} RECORD
                 </span>
-                <span className="text-[9px] font-mono text-slate-600 font-bold select-all">
+                <span className="text-[10px] font-mono text-slate-500 font-medium select-all">
                   {evt.refId}
                 </span>
               </div>
               <div className="space-y-0.5">
-                <span className="text-[10px] font-sans font-bold text-slate-300 block truncate">
+                <span className="text-[11px] font-sans font-medium text-slate-300 block truncate">
                   {evt.title}
                 </span>
-                <span className="text-[9px] font-mono text-slate-500 block truncate">
+                <span className="text-[10px] font-mono text-slate-500 block truncate">
                   By: @{evt.author}
                 </span>
               </div>
@@ -220,7 +220,7 @@ export default function AiReportPanel({
         
         {/* RELATED FILES (4) */}
         <div className="md:col-span-6 space-y-2">
-          <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">
+          <span className="text-[11px] font-mono font-medium text-slate-500 uppercase tracking-wider block">
             Affected Code modules ({relatedFiles.length})
           </span>
           
@@ -245,7 +245,7 @@ export default function AiReportPanel({
 
         {/* RELATED PRS & ISSUES (5) */}
         <div className="md:col-span-6 space-y-2">
-          <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">
+          <span className="text-[11px] font-mono font-medium text-slate-500 uppercase tracking-wider block">
             Related Issues & Pull Requests
           </span>
 
@@ -281,14 +281,14 @@ export default function AiReportPanel({
           <div className="bg-slate-900 border border-slate-800 rounded-xl max-w-lg w-full p-5 shadow-2xl space-y-4 text-left animate-fade-in">
             <div className="flex justify-between items-start border-b border-slate-800 pb-2.5">
               <div>
-                <span className="text-[8px] font-mono text-indigo-400 uppercase tracking-widest block font-bold">
+                <span className="text-[11px] font-mono text-indigo-400 uppercase tracking-widest block font-medium">
                   {activeEvidenceModal.type.toUpperCase()} VERIFIED EVIDENCE
                 </span>
-                <h4 className="text-xs font-sans font-bold text-slate-200 mt-1">
+                <h4 className="text-xs font-sans font-medium text-slate-200 mt-1">
                   {activeEvidenceModal.title}
                 </h4>
               </div>
-              <span className="text-[10px] font-mono bg-slate-950 px-2.5 py-1 rounded border border-slate-850 text-slate-400 font-bold uppercase select-all whitespace-nowrap">
+              <span className="text-[10px] font-mono bg-slate-950 px-2.5 py-1 rounded border border-slate-850 text-slate-400 font-medium uppercase select-all whitespace-nowrap">
                 {activeEvidenceModal.refId}
               </span>
             </div>

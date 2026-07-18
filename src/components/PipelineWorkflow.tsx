@@ -32,13 +32,13 @@ export default function PipelineWorkflow({ stages, activeStageId }: PipelineWork
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-2">
           <Terminal size={14} className="text-indigo-400" />
-          <span className="text-xs font-mono font-bold tracking-wider text-slate-400 uppercase">
+          <span className="text-[11px] font-mono font-medium tracking-wider text-slate-400 uppercase">
             RECONSTRUCTION ENGINE PIPELINE STATE
           </span>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-          <span className="text-[10px] font-mono text-slate-500">ENGINE OPERATIONAL</span>
+          <span className="text-[10px] font-mono text-slate-500 font-medium">ENGINE OPERATIONAL</span>
         </div>
       </div>
 
@@ -90,7 +90,7 @@ export default function PipelineWorkflow({ stages, activeStageId }: PipelineWork
                 </div>
 
                 <span
-                  className={`text-[8px] font-mono font-bold px-1.5 py-0.5 rounded uppercase ${
+                  className={`text-[8px] font-mono font-medium px-1.5 py-0.5 rounded uppercase ${
                     isSuccess
                       ? "bg-emerald-500/10 text-emerald-400"
                       : isRunning
@@ -104,7 +104,7 @@ export default function PipelineWorkflow({ stages, activeStageId }: PipelineWork
 
               {/* Stage Metadata */}
               <div className="mt-auto">
-                <span className="text-[11px] font-sans font-bold text-slate-200 block truncate">
+                <span className="text-xs font-sans font-medium text-slate-200 block truncate">
                   {stage.name}
                 </span>
                 <span className="text-[9px] font-mono text-slate-500 block truncate">

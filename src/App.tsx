@@ -56,6 +56,8 @@ import LandingPage from "./components/LandingPage";
 import DashboardPage from "./components/DashboardPage";
 import EvidencePage from "./components/EvidencePage";
 import SettingsPage from "./components/SettingsPage";
+import LoginPage from "./components/LoginPage";
+import { useAuth } from "./lib/auth";
 
 // High-fidelity markdown inline styles parser
 function renderInlineStyles(text: string) {
@@ -193,7 +195,52 @@ export default function App() {
   const [showKeyWarning, setShowKeyWarning] = useState<boolean>(false);
 
   // Active view page state
-  const [currentPage, setCurrentPage] = useState<"landing" | "dashboard" | "repository" | "timeline" | "evidence" | "ask_ai" | "settings">("landing");
+  const [currentPage, setCurrentPage] = useState<"landing" | "dashboard" | "repository" | "timeline" | "evidence" | "ask_ai" | "settings" | "login" | "signup" | "forgot">("landing");
+
+  const { user, isAuthenticated, logout } = useAuth();
+
+  // Path routing synchronization
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const path = window.location.pathname;
+      if (path === "/login") {
+        setCurrentPage("login");
+      } else if (path === "/signup") {
+        setCurrentPage("signup");
+      } else if (path === "/forgot-password") {
+        setCurrentPage("forgot");
+      } else if (path === "/dashboard") {
+        setCurrentPage("dashboard");
+      } else if (path === "/settings") {
+        setCurrentPage("settings");
+      } else if (path === "/") {
+        setCurrentPage("landing");
+      }
+    };
+
+    // Run on mount
+    handleLocationChange();
+
+    window.addEventListener("popstate", handleLocationChange);
+    return () => {
+      window.removeEventListener("popstate", handleLocationChange);
+    };
+  }, []);
+
+  // Update URL path when currentPage changes (without reloading)
+  const navigateToPage = (page: typeof currentPage) => {
+    setCurrentPage(page);
+    let path = "/";
+    if (page === "login") path = "/login";
+    else if (page === "signup") path = "/signup";
+    else if (page === "forgot") path = "/forgot-password";
+    else if (page === "landing") path = "/";
+    else path = `/${page}`;
+    
+    if (window.location.pathname !== path) {
+      window.history.pushState(null, "", path);
+    }
+  };
 
   // Live GitHub integration state
   const [isGitHubConnected, setIsGitHubConnected] = useState<boolean>(false);
@@ -684,10 +731,35 @@ The cleanup routine was actually invoked externally by an AWS Lambda cron job co
   if (currentPage === "landing") {
     return (
       <LandingPage
-        onLaunch={() => setCurrentPage("dashboard")}
+        onLaunch={() => navigateToPage("dashboard")}
         serverHealth={serverHealth}
         apiKeyActive={apiKeyActive}
+        onNavigateToPage={navigateToPage}
       />
+    );
+  }
+
+  if (currentPage === "login" || currentPage === "signup" || currentPage === "forgot") {
+    return (
+      <div className="relative min-h-screen bg-[#050816]">
+        {/* Reuse WebGL interactive neural background behind login */}
+        <div className="absolute inset-0 pointer-events-auto" style={{ zIndex: 0 }}>
+          <LandingPage
+            onLaunch={() => {}}
+            serverHealth={serverHealth}
+            apiKeyActive={apiKeyActive}
+            onNavigateToPage={() => {}}
+          />
+        </div>
+        <div className="absolute inset-0 bg-[#050816]/75 pointer-events-none" style={{ zIndex: 1 }} />
+        <div className="relative z-10 w-full min-h-screen flex items-center justify-center">
+          <LoginPage
+            initialMode={currentPage === "forgot" ? "forgot" : currentPage === "signup" ? "signup" : "login"}
+            onBackToLanding={() => navigateToPage("landing")}
+            onLoginSuccess={() => navigateToPage("dashboard")}
+          />
+        </div>
+      </div>
     );
   }
 
@@ -755,6 +827,40 @@ The cleanup routine was actually invoked externally by an AWS Lambda cron job co
 
         {/* Sidebar Footer details */}
         <div className="space-y-4 border-t border-slate-900 pt-5">
+          {/* CodeStory session card */}
+          {isAuthenticated && user ? (
+            <div className="flex items-center justify-between p-2.5 bg-indigo-950/20 rounded-xl border border-indigo-500/15">
+              <div className="flex items-center gap-2 min-w-0">
+                <img
+                  src={user.avatarUrl || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(user.email)}`}
+                  alt="CodeStory profile"
+                  className="w-6.5 h-6.5 rounded-xl border border-indigo-500/20"
+                />
+                <div className="text-left min-w-0">
+                  <span className="text-[10.5px] font-sans font-bold text-slate-200 block truncate">{user.name}</span>
+                  <span className="text-[8.5px] font-mono text-indigo-400 block truncate uppercase tracking-wider">{user.role || "Developer"}</span>
+                </div>
+              </div>
+              <button
+                onClick={() => { logout(); navigateToPage("landing"); }}
+                className="p-1 text-slate-500 hover:text-red-400 transition-colors cursor-pointer rounded-lg hover:bg-red-500/5"
+                title="Logout CodeStory"
+              >
+                <LogOut size={12} />
+              </button>
+            </div>
+          ) : (
+            <div
+              onClick={() => navigateToPage("login")}
+              className="p-2.5 bg-indigo-500/5 hover:bg-indigo-500/10 border border-indigo-500/10 hover:border-indigo-500/20 rounded-xl text-left cursor-pointer transition-all flex items-center justify-between group shadow-[0_0_15px_rgba(99,102,241,0.02)]"
+            >
+              <div className="space-y-0.5">
+                <span className="text-[8.5px] font-mono text-slate-500 block uppercase font-bold tracking-wider font-sans">CodeStory Profile</span>
+                <span className="text-[10px] font-sans font-medium text-slate-400 group-hover:text-indigo-300 transition-colors">Click to Authenticate</span>
+              </div>
+              <ChevronRight size={13} className="text-indigo-400 animate-pulse group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          )}
           {/* Active GitHub session */}
           {isGitHubConnected ? (
             <div className="flex items-center justify-between p-2 bg-slate-900/40 rounded-lg border border-slate-900">

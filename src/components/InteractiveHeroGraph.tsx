@@ -315,10 +315,10 @@ export default function InteractiveHeroGraph() {
                 <div className={`p-1.5 rounded-lg border w-fit ${activeNode.colorClass.split(" ")[0]} ${activeNode.colorClass.split(" ")[1]}`}>
                   <activeNode.icon size={13} className={activeNode.iconColor} />
                 </div>
-                <div className="space-y-1 flex-1 text-left">
+                 <div className="space-y-1 flex-1 text-left">
                   <div className="flex items-center gap-1.5 justify-between">
-                    <span className="text-[10px] font-mono font-bold text-slate-100">{activeNode.title}</span>
-                    <span className="text-[8px] font-mono font-extrabold text-indigo-400 uppercase tracking-widest bg-indigo-500/10 px-1.5 py-0.5 rounded">
+                    <span className="text-[10px] font-mono font-medium text-slate-100">{activeNode.title}</span>
+                    <span className="text-[8px] font-mono font-medium text-indigo-400 uppercase tracking-widest bg-indigo-500/10 px-1.5 py-0.5 rounded border border-indigo-500/10">
                       {activeNode.type}
                     </span>
                   </div>
@@ -338,7 +338,7 @@ export default function InteractiveHeroGraph() {
                 </div>
                 <div className="space-y-1 flex-1 text-left">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[10px] font-mono font-bold text-slate-300">Hover Nodes to Reconstruct History</span>
+                    <span className="text-[10px] font-mono font-medium text-slate-300">Hover Nodes to Reconstruct History</span>
                   </div>
                   <p className="text-[10px] text-slate-500 leading-relaxed font-sans">
                     Trace how commits, issues, pull requests, reviews, and container logs automatically link into a unified semantic map.
